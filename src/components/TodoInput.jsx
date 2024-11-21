@@ -1,18 +1,21 @@
 // src/components/TodoInput.js
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo, updateTodo } from "../redux/slices/todoSlice";
+import { updateTodo } from "../redux/async/todoSlice";
+import { addTodo } from "../redux/async/todoSlice";
 import { v4 as uuidv4 } from "uuid";
 
 const TodoInput = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
-  const { isUpdate, todo } = useSelector((state) => state.todos);
+  const { isUpdate, todo, loading } = useSelector((state) => state.todos);
   const { lang } = useSelector((state) => state.lang);
 
   useEffect(() => {
     if (todo?.id) {
       setText(todo.text);
+    } else {
+      setText("");
     }
   }, [todo]);
 
@@ -20,12 +23,7 @@ const TodoInput = () => {
     e.preventDefault();
     if (text.trim() !== "") {
       if (isUpdate) {
-        dispatch(
-          updateTodo({
-            ...todo,
-            text,
-          })
-        );
+        dispatch(updateTodo({ ...todo, text }));
       } else {
         dispatch(
           addTodo({
@@ -45,13 +43,16 @@ const TodoInput = () => {
         <input
           type="text"
           className="form-control"
-          placeholder="Add a new task..."
+          placeholder={
+            lang === "id" ? "Tambah tugas baru..." : "Add a new task..."
+          }
           value={text}
           onChange={(e) => setText(e.target.value)}
           required
         />
         <button
           type="submit"
+          disabled={loading}
           className={isUpdate ? `btn btn-warning` : `btn btn-success`}
         >
           {isUpdate

@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "id": "b6b97124-b2d8-4dd8-9552-74fc4df4c563",
+      "text": "Belajar React",
+      "completed": false
+    },
+    {
+      "id": "11652f04-cadb-4478-9e60-cefb0382347d",
+      "text": "Belajar Vue js",
+      "completed": true
+    },
+    {
+      "id": "aeaed1a8-596e-4c65-aa8a-6c64fe3007b6",
+      "text": "Belajar Android",
+      "completed": false
+    },
+    {
+      "id": "5df97ff6-8637-4dc6-860c-870ce93e8d86",
+      "text": "Belajar Flutter",
+      "completed": true
+    },
+    {
+      "id": "b7466393-4b93-4790-9459-19ab931bdcb0",
+      "text": "Belajar Golang",
+      "completed": false
+    }
+  ]
+}
